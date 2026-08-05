@@ -17,7 +17,3 @@
 .whatsapp span {
   margin-left: 0;
 }
-
-/* Correcciones de interacción móvil */
-@media(max-width:850px){.menu-button{padding:12px;cursor:pointer;position:relative;z-index:4}.header nav.open,.header:focus-within nav{display:flex!important}.header nav{z-index:3}}
-@media(max-width:540px){.whatsapp{width:52px;height:52px;padding:0;border-radius:50%}.whatsapp::before{width:28px;height:28px}.whatsapp span{display:none}}
