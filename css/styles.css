@@ -32,3 +32,27 @@
 .whatsapp span {
   margin-left: 0;
 }
+
+.playeras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.playeras img {
+  width: 100%;
+  max-width: 600px;
+  justify-self: end;
+}
+
+@media (max-width: 850px) {
+  .playeras {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .playeras img {
+    justify-self: start;
+  }
+}
