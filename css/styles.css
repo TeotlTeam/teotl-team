@@ -38,6 +38,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 60px;
+  background: #f2eeee;
 }
 
 .playeras img {
