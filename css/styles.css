@@ -33,70 +33,24 @@
   margin-left: 0;
 }
 
-/*.playeras {
-  background: #f2eeee;
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  align-items: center;
-  gap: 7vw;
-}
-
-.shirt-frame {
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-}
-
-.shirt-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-
-.shirt-slide.active {
-  opacity: 1;
-}
-
-.shirt-previews {
-  display: flex;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.shirt-preview {
-  width: 92px;
-  aspect-ratio: 3 / 2;
-  padding: 0;
-  border: 2px solid transparent;
-  opacity: 0.55;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.shirt-preview.active {
-  border-color: #b6122a;
-  opacity: 1;
-}
-
-.shirt-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 850px) {
-  .playeras {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-*/
 /* Carrusel de playeras: scroll nativo para máxima compatibilidad */
 .product-viewport{position:relative;overflow:hidden;background:#e2d9d7}.product-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}.product-track::-webkit-scrollbar{display:none}.product-track figure{flex:0 0 100%;width:100%;margin:0;aspect-ratio:3/2;scroll-snap-align:start}.product-track img{width:100%;height:100%;display:block;object-fit:cover}.product-arrow{position:absolute;top:50%;z-index:2;translate:0 -50%;width:48px;height:48px;border:0;background:#10090ad9;color:#fff;font-size:1.5rem;cursor:pointer}.product-arrow:hover{background:var(--red)}.product-prev{left:0}.product-next{right:0}.product-previews{display:flex;gap:12px;margin-top:14px}.product-preview{width:92px;aspect-ratio:3/2;padding:0;border:2px solid transparent;background:#ddd;cursor:pointer;opacity:.55;overflow:hidden}.product-preview.active,.product-preview:hover{border-color:var(--red);opacity:1}.product-preview img{width:100%;height:100%;object-fit:cover}@media(max-width:850px){.product-preview{width:76px}.product-arrow{width:42px;height:42px}}
 
 /* Carrusel de playeras */
 .playeras{background:#f2eeee;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:7vw}.playeras-heading p:not(.tag){max-width:330px}.shirt-frame{position:relative;aspect-ratio:3/2;background:#e2d9d7;overflow:hidden}.shirt-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .45s ease,transform .6s ease}.shirt-slide.active{opacity:1;transform:scale(1)}.shirt-arrow{position:absolute;top:50%;translate:0 -50%;width:46px;height:46px;border:0;background:#10090ad9;color:white;font-size:1.5rem;cursor:pointer}.shirt-arrow:hover{background:var(--red)}.shirt-arrow.previous{left:0}.shirt-arrow.next{right:0}.shirt-previews{display:flex;gap:12px;margin-top:14px}.shirt-preview{width:92px;aspect-ratio:3/2;padding:0;border:2px solid transparent;background:#ddd;cursor:pointer;opacity:.55;overflow:hidden}.shirt-preview.active,.shirt-preview:hover{border-color:var(--red);opacity:1}.shirt-preview img{width:100%;height:100%;object-fit:cover}@media(max-width:850px){.playeras{grid-template-columns:1fr;gap:32px}.shirt-frame{max-width:760px}.shirt-preview{width:76px}}
+
+/* Línea divisoria entre elementos del menú hamburguesa*/
+@media (max-width: 850px) {
+  .header nav a {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid #4b3034;
+  }
+
+  .header nav .nav-cta {
+    width: auto;
+    margin-top: 12px;
+    padding: 12px 20px;
+    border-bottom: 0;
+  }
+}
