@@ -57,3 +57,52 @@ document.querySelectorAll('.product-carousel').forEach((carousel) => {
   carousel.addEventListener('mouseleave', restart);
   restart();
 });
+
+/* Analytics */
+function trackEvent(name, parameters = {}) {
+  if (typeof gtag === 'function') {
+    gtag('event', name, parameters);
+  }
+}
+
+/* WhatsApp */
+document.querySelectorAll('[data-wa]').forEach((link) => {
+  link.addEventListener('click', () => {
+    trackEvent('generate_lead', {
+      lead_source: 'whatsapp',
+      link_text: link.textContent.trim()
+    });
+  });
+});
+
+/* Agenda de Cal.com */
+document.querySelectorAll('a[href*="cal.com"]').forEach((link) => {
+  link.addEventListener('click', () => {
+    trackEvent('generate_lead', {
+      lead_source: 'cal_com',
+      link_text: link.textContent.trim()
+    });
+  });
+});
+
+/* Google Maps */
+document.querySelectorAll('a[href*="google.com/maps"], a[href*="share.google"]').forEach((link) => {
+  link.addEventListener('click', () => {
+    trackEvent('click_maps', {
+      link_text: link.textContent.trim()
+    });
+  });
+});
+
+/* Redes sociales */
+document.querySelectorAll('a[href*="instagram.com"]').forEach((link) => {
+  link.addEventListener('click', () => trackEvent('click_instagram'));
+});
+
+document.querySelectorAll('a[href*="facebook.com"]').forEach((link) => {
+  link.addEventListener('click', () => trackEvent('click_facebook'));
+});
+
+document.querySelectorAll('a[href*="tiktok.com"]').forEach((link) => {
+  link.addEventListener('click', () => trackEvent('click_tiktok'));
+});
