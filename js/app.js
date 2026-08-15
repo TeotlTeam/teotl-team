@@ -68,7 +68,7 @@ function trackEvent(name, parameters = {}) {
 /* WhatsApp */
 document.querySelectorAll('[data-wa]').forEach((link) => {
   link.addEventListener('click', () => {
-    trackEvent('generate_lead', {
+    trackEvent('generate_lead_wa', {
       lead_source: 'whatsapp',
       link_text: link.textContent.trim()
     });
@@ -78,7 +78,7 @@ document.querySelectorAll('[data-wa]').forEach((link) => {
 /* Agenda de Cal.com */
 document.querySelectorAll('a[href*="cal.com"]').forEach((link) => {
   link.addEventListener('click', () => {
-    trackEvent('generate_lead', {
+    trackEvent('generate_lead_cal', {
       lead_source: 'cal_com',
       link_text: link.textContent.trim()
     });
