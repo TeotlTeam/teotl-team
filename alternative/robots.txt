@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://teotlteam.github.io/teotl-team/sitemap.xml

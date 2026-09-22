@@ -5,17 +5,41 @@ document.querySelectorAll('[data-wa]').forEach((link) => {
   link.href = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
 });
 
+const header = document.querySelector('.header');
 const menuButton = document.querySelector('.menu-button');
 const menu = document.querySelector('#menu');
-menuButton?.addEventListener('click', () => {
-  const isOpen = menu.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(isOpen));
+
+const setMenu = (isOpen) => {
+  menu?.classList.toggle('open', isOpen);
+  menuButton?.setAttribute('aria-expanded', String(isOpen));
+  document.body.classList.toggle('nav-open', isOpen);
+};
+
+menuButton?.addEventListener('click', (event) => {
+  event.stopPropagation();
+  setMenu(!menu.classList.contains('open'));
 });
 
-document.querySelectorAll('#menu a').forEach((link) => link.addEventListener('click', () => {
-  menu?.classList.remove('open');
-  menuButton?.setAttribute('aria-expanded', 'false');
-}));
+document.querySelectorAll('#menu a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+document.addEventListener('click', (event) => {
+  if (menu?.classList.contains('open') && !menu.contains(event.target) && event.target !== menuButton) {
+    setMenu(false);
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu?.classList.contains('open')) {
+    setMenu(false);
+    menuButton?.focus();
+  }
+});
+
+if (header) {
+  const toggleScrolled = () => header.classList.toggle('scrolled', scrollY > 10);
+  toggleScrolled();
+  addEventListener('scroll', toggleScrolled, { passive: true });
+}
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
@@ -68,7 +92,7 @@ function trackEvent(name, parameters = {}) {
 /* WhatsApp */
 document.querySelectorAll('[data-wa]').forEach((link) => {
   link.addEventListener('click', () => {
-    trackEvent('generate_lead_wa', {
+    trackEvent('generate_lead', {
       lead_source: 'whatsapp',
       link_text: link.textContent.trim()
     });
@@ -78,7 +102,7 @@ document.querySelectorAll('[data-wa]').forEach((link) => {
 /* Agenda de Cal.com */
 document.querySelectorAll('a[href*="cal.com"]').forEach((link) => {
   link.addEventListener('click', () => {
-    trackEvent('generate_lead_cal', {
+    trackEvent('generate_lead', {
       lead_source: 'cal_com',
       link_text: link.textContent.trim()
     });
