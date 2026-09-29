@@ -73,13 +73,23 @@ recuperarlas, dímelo y te las regenero a partir del ZIP que subiste al inicio.
 - `robots.txt` apunta correctamente a `sitemap.xml` (no a la raíz del sitio).
 
 ### Página de error 404
-- `404.html` no tenía la misma estructura que el resto del sitio: le faltaban el `<head>`
-  bien formado (favicon, manifest, fuentes), el header con navegación y el footer, y el
-  título usaba `<h1>` en vez de `<h2>` (por lo que no heredaba el estilo grande de `.cta`).
-- Se reconstruyó con el mismo header/nav y footer que `index.html`, más un mensaje de error
-  con botón para volver al inicio y otro para escribir por WhatsApp.
-- Se agregó `<meta name="robots" content="noindex">` para que Google no indexe esta página
-  (buena práctica estándar en páginas 404, no la tenía ninguna versión anterior).
+- Primer intento: se reconstruyó `404.html` con el mismo header/nav y footer que
+  `index.html` (antes le faltaban por completo, y el título usaba `<h1>` en vez de `<h2>`).
+- Ese primer intento seguía viéndose sin estilos en producción. La causa real: GitHub Pages
+  sirve tu `404.html` para cualquier URL que no existe, pero el navegador resuelve las rutas
+  *relativas* de ese archivo (`css/styles.css`, `index.html`, etc.) contra la URL que el
+  visitante pidió, no contra la carpeta real donde vive `404.html`. Si alguien cae en
+  `teotlteam.github.io/teotl-team/alternative/`, una ruta relativa como `css/styles.css` se
+  busca en `.../teotl-team/alternative/css/styles.css`, que no existe — por eso el CSS nunca
+  cargaba y la página se veía con los estilos por defecto del navegador.
+- Solución: todas las rutas internas de `404.html` (CSS, manifest, favicon, imágenes, links
+  del menú y footer, scripts) ahora son **absolutas**, con el prefijo `/teotl-team/`
+  (ej. `/teotl-team/css/styles.css`).
+- **Importante para el futuro:** ese prefijo `/teotl-team/` asume que el sitio sigue viviendo
+  en `teotlteam.github.io/teotl-team/`. Si algún día mueves el sitio a un dominio propio que
+  sirva desde la raíz (ej. `teotlteam.com/`), hay que quitar ese prefijo de `404.html`
+  (dejar `/css/styles.css`, `/index.html`, etc.) o el mismo problema va a repetirse al revés.
+- Se agregó `<meta name="robots" content="noindex">` para que Google no indexe esta página.
 - Se cargan `consent.js` y `app.js` igual que en el resto del sitio, para que el menú móvil,
   el botón "volver arriba" y el enlace de WhatsApp funcionen igual aquí.
 
