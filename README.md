@@ -93,6 +93,34 @@ recuperarlas, dímelo y te las regenero a partir del ZIP que subiste al inicio.
 - Se cargan `consent.js` y `app.js` igual que en el resto del sitio, para que el menú móvil,
   el botón "volver arriba" y el enlace de WhatsApp funcionen igual aquí.
 
+### Botón "volver arriba" circular
+- El botón flotante `.top` tenía forma cuadrada; ahora es circular (`border-radius:50%`),
+  con el mismo tratamiento de sombra/hover-escala que las flechas circulares del carrusel
+  y tamaño de 44px (área táctil mínima recomendada).
+
+### Páginas nuevas de confirmación de cita
+- **`bienvenida.html`** — se muestra cuando un usuario nuevo agenda su primera cita. Reusa
+  el bloque `.cta` (igual que el 404 y el CTA final del home) para el título/confirmación,
+  y la cuadrícula numerada `.process .steps` de la sección "Proceso" del home —forzada a una
+  sola columna— para los 4 pasos. Los 3 enlaces del paso "02" (registro, historia clínica,
+  agendar valoración) usan el mismo subrayado animado que "Ver reseñas"/"Abrir en Maps", en
+  vez de pegar las URL como texto plano.
+- **`seguimiento.html`** — se muestra cuando un usuario recurrente agenda su sesión de
+  seguimiento. Es un solo bloque `.cta` con un círculo de confirmación nuevo (`.check-badge`,
+  un `✓` en el color de marca — no se agregó ningún set de iconos nuevo), el mensaje de
+  agradecimiento y la frase final destacada en cursiva.
+- Ambas páginas tienen `<meta name="robots" content="noindex">` (son transaccionales, no
+  deben indexarse) y usan rutas absolutas `/teotl-team/...` igual que `404.html`, por la
+  misma razón documentada arriba.
+- Cambios en `css/styles.css` para que funcionaran: se extendió la regla de título grande de
+  `.cta` para que también aplique a `<h1>` (antes solo a `<h2>`, y estas páginas usan `<h1>`
+  como título principal por semántica/accesibilidad), y se agregó la nueva clase
+  `.check-badge` para el círculo de confirmación de `seguimiento.html`.
+- Pendiente de tu lado: configurar en Cal.com (o donde gestiones las reservas) que redirija
+  a `/teotl-team/bienvenida.html` después de una reserva de cliente nuevo, y a
+  `/teotl-team/seguimiento.html` después de una reserva de seguimiento — yo no tengo acceso
+  a esa configuración.
+
 ### Corrección de correo
 - Se reemplazó `teotlteam@gmail.com` → `teotlteam+site@gmail.com` en todos los archivos
   donde aparecía (`index.html`, `en.html`, `privacidad.html`, `aviso-privacidad.html`,
